@@ -38,3 +38,16 @@ exports.getDashedNumber = (req, res) => {
     });
   }
 };
+
+//binary search
+//body:
+/**
+ * {
+    "items": [1,2,4,6,7,9,10],
+    "filterElement":4
+*}
+* need to sort
+* need to implement binary search
+ */
+
+exports.binarySearch = (req, res) => {};
