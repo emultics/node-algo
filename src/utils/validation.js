@@ -1,13 +1,18 @@
 const { type } = require("express/lib/response");
 
 exports.isNumeric = (str) => {
-  //TODO check string is numeric or not;
   if(!str) {
     throw new Error('field should not be blank')
   }
-  const getStringedNumber = str.toString();
-  const reg = /^\d+$/;
-  return reg.test(getStringedNumber);
+  try{
+    const getStringedNumber = str.toString();
+    const reg = /^\d+$/;
+    return reg.test(getStringedNumber);
+  }
+  catch(e)
+  {
+    throw new Error(e.message);
+  }
 };
 
 /**
@@ -16,16 +21,19 @@ exports.isNumeric = (str) => {
  * return true if Empty, neither false
  */
 exports.isEmptyArray = (array) => {
-  //TODO check array is empty or not
   if(!array)
   {
     throw new Error("array is required");
   }
-  if(Array.isArray(array))
-  {
-    return array.length === 0?true:false;
-  } 
-  else throw new Error("its not an array");
+  try{
+    if(Array.isArray(array))
+    {
+      return array.length === 0?true:false;
+    } 
+  }
+  catch(e){
+    throw new Error(e.message);
+  }
 
 };
 
@@ -35,13 +43,18 @@ exports.isEmptyArray = (array) => {
  * return true if string, neither false
  */
 exports.isString = (element) => {
-  //TODO
   if(!element){
     return false;
   }
-  if (typeof element === 'string')
-    return true
-  return false
+  try{
+    if (typeof element === 'string')
+      return true
+    return false
+  }
+  catch(e){
+    throw new Error(e.message);
+  }
+  
 
 };
 
