@@ -1,4 +1,5 @@
 const express = require('express');
+const { isNumeric } = require('../utils/validation');
 
 /**
  * @param {*} req request of rest, instance of express
@@ -18,7 +19,7 @@ exports.getDashedNumber = (req, res) => {
     }
     //check element is string or not, is not string but numeric convert to string
     element = element instanceof String ? element : element.toString();
-    //check string is numeric or not
+    if (!isNumeric(element)) throw new Error('input should be numeric');
 
     //TODO
     let result = [element[0]];
