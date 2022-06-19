@@ -1,4 +1,4 @@
-function binarySearch(items, filterElement) {
+exports.binarySearch = (items, filterElement)=>{
   const index = recursiveBinarySearch(
     items,
     0,
@@ -26,4 +26,22 @@ function recursiveBinarySearch(items, left, right, filterElement) {
   } else return -1;
 }
 
-module.exports = { binarySearch };
+exports.bubbleSort=(items)=>{
+    let lengthOfArray = items.length;
+    //first loop indicates the phases
+    for (let i = 0; i<lengthOfArray-1; i++)
+    {
+        //second loop indicates the element of the array items that are to be compared
+        for(let j =0; j<lengthOfArray-i-1 ; j++)
+        {
+            if(items[j] > items[j+1])
+            {
+                const temp = items[j];
+                items[j]=items[j+1];
+                items[j+1]=temp;
+            }
+        }
+    }
+    return items;
+}
+
