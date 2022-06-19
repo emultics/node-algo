@@ -1,4 +1,5 @@
 const express = require('express');
+const { binarySearch, bubbleSort } = require('../utils/utils');
 const { isNumeric } = require('../utils/validation');
 const utils = require('../utils/utils');
 
@@ -58,9 +59,19 @@ exports.bSearch = (req, res) => {
   }
   const index = utils.binarySearch(items, filterElement);
   return res.status(200).send({
-    result:
-      index != -1
-        ? `${filterElement} found in ${index} position`
-        : 'Not Found!',
-  });
+    result : index!=-1?`${filterElement} found in ${index} position`:'Not Found!'
+  })
 };
+
+exports.BubbleSort = (req,res)=>{
+  const items= req.body.items;
+  if(!items) 
+    throw new Error ("data is required!")
+  try{
+    const sortedItem = bubbleSort(items);
+    return res.status(200).send(sortedItem);
+  }
+  catch(e){
+    throw new Error(e.message);
+  }
+}
