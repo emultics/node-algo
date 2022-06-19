@@ -1,6 +1,6 @@
 const express = require('express');
-const { binarySearch } = require('../utils/utils');
 const { isNumeric } = require('../utils/validation');
+const utils = require('../utils/utils');
 
 /**
  * @param {*} req request of rest, instance of express
@@ -52,15 +52,15 @@ exports.getDashedNumber = (req, res) => {
  */
 
 exports.bSearch = (req, res) => {
-  const {items,filterElement} = req.body;
-  if(!items || !filterElement){
-    throw new Error("data is required!")
+  const { items, filterElement } = req.body;
+  if (!items || !filterElement) {
+    throw new Error('data is required!');
   }
-  const itemsLength = items.length;
-  const index = binarySearch(items, 0, itemsLength-1, filterElement);
+  const index = utils.binarySearch(items, filterElement);
   return res.status(200).send({
-    result : index!=-1?`${filterElement} found in ${index} position`:'Not Found!'
-  })
-  
-
+    result:
+      index != -1
+        ? `${filterElement} found in ${index} position`
+        : 'Not Found!',
+  });
 };
