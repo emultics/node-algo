@@ -1,4 +1,5 @@
 const express = require('express');
+const { binarySearch } = require('../utils/utils');
 const { isNumeric } = require('../utils/validation');
 
 /**
@@ -50,20 +51,16 @@ exports.getDashedNumber = (req, res) => {
 * need to implement binary search
  */
 
-exports.binarySearch = (req, res) => {
+exports.bSearch = (req, res) => {
   const {items,filterElement} = req.body;
   if(!items || !filterElement){
     throw new Error("data is required!")
   }
-  const n = items.length;
-  function Search(items,low,n,filterElement){
-    const middleElement = n / 2;
-    if(filterElement === items[middleElement]){
-        console.log(found);
-    }
-    else if(filterElement < items[middleElement]){
-      return Search(items,low,middleElement-1,filterElement)
-    }
-    return Search(items,middleElement+1,n,filterElement)
-  }
+  const itemsLength = items.length;
+  const index = binarySearch(items, 0, itemsLength-1, filterElement);
+  return res.status(200).send({
+    result : index!=-1?`${filterElement} found in ${index} position`:'Not Found!'
+  })
+  
+
 };
