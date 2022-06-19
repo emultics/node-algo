@@ -50,4 +50,20 @@ exports.getDashedNumber = (req, res) => {
 * need to implement binary search
  */
 
-exports.binarySearch = (req, res) => {};
+exports.binarySearch = (req, res) => {
+  const {items,filterElement} = req.body;
+  if(!items || !filterElement){
+    throw new Error("data is required!")
+  }
+  const n = items.length;
+  function Search(items,low,n,filterElement){
+    const middleElement = n / 2;
+    if(filterElement === items[middleElement]){
+        console.log(found);
+    }
+    else if(filterElement < items[middleElement]){
+      return Search(items,low,middleElement-1,filterElement)
+    }
+    return Search(items,middleElement+1,n,filterElement)
+  }
+};
