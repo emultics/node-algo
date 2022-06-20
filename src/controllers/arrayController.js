@@ -75,3 +75,28 @@ exports.BubbleSort = (req,res)=>{
     throw new Error(e.message);
   }
 }
+
+exports.Fibonacci=(req,res)=>{
+  const {firstElement,secondElement,n}=req.body;
+  if(!firstElement || !secondElement) throw new Error("data is required!")
+
+  try{
+    const fibSeries = this.fibonacci(firstElement,secondElement,n);
+    return res.status(200).send(fibSeries);
+  }
+  catch(e){
+    throw new Error(e.message);
+  }
+}
+
+exports.countDigits=(req,res)=>{
+  const number = req.body.num;
+  if(!number) throw new Error("data required!")
+  try{
+    const digit = this.Count(number);
+    return res.status(200).send(digit)
+  }
+  catch(e){
+    throw new Error(e.message);
+  }
+}
