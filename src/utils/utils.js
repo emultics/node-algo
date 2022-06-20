@@ -45,3 +45,22 @@ exports.bubbleSort=(items)=>{
     return items;
 }
 
+exports.fibonacci=(firstElement,secondElement,n)=>{
+    let a =firstElement;
+    let b =secondElement;
+    for (let index =0;index<n;index++){
+        console.log(a);
+        let c = a+b;
+            a=b;
+            b=c;
+    }
+}
+
+exports.Count=(number)=>{
+    let count = 0;
+    while(number!=0){
+        number = number/10;
+        count++;
+    }
+    return count;
+}
